@@ -5,6 +5,7 @@ let currentInput = '';
 let previousInput = '';
 let operator = '';
 
+
 function updateScreen(value) {
     screen.value = value;
 }
@@ -40,6 +41,7 @@ function calculate() {
     }
 }
 
+
 function handleButtonClick(event) {
     const value = event.target.textContent;
 
@@ -49,8 +51,10 @@ function handleButtonClick(event) {
         operator = '';
         updateScreen('0');
     } else if (value === 'DEL') {
-        currentInput = currentInput.slice(0, -1);
-        updateScreen(currentInput || '0');
+        if (currentInput.length > 0) {
+            currentInput = currentInput.slice(0, -1);
+            updateScreen(currentInput || '0');
+        }
     } else if (value === '=') {
         calculate();
     } else if (value === '.' && !currentInput.includes('.')) {
